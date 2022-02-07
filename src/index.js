@@ -4,6 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//  rendenring with interval
+/*
+function intervalRender() {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+setInterval(intervalRender, 1000);
+*/
+
+// rendering without setTimeout
 ReactDOM.render(
   <React.StrictMode>
     <App />
