@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Button from 'react-bootstrap/Button'
 
 export default function Body(props) {
     const [value, setValue] = useState('')
@@ -8,14 +9,6 @@ export default function Body(props) {
         'numbers': [true, -1],
         'specialChar': [true, -1]
     })
-
-    // const optionHandler = () => {
-    //     // smallString
-    //     let x = document.getElementById("smallString");
-    //     let c = document.createElement("option");
-    //     c.text = "Kiwi";
-    //     x.options.add(c, 1);
-    // }
 
     const boxValueHandler = (myValue) => {
         let objName = myValue.target.getAttribute('name')
@@ -30,14 +23,15 @@ export default function Body(props) {
                 break
             case 'specialCharLimit': objName = 'specialChar'
                 break
+            default:
         }
 
         let boolValue = boxValue[objName][0]
         let intValue = boxValue[objName][1]
 
-        if (myValue.target.value == 'true') boolValue = true
-        else if (myValue.target.value == 'false') boolValue = false
-        else if (myValue.target.value == 'sem limite') intValue = -1
+        if (myValue.target.value === 'true') boolValue = true
+        else if (myValue.target.value === 'false') boolValue = false
+        else if (myValue.target.value === 'sem limite') intValue = -1
         else intValue = parseInt(myValue.target.value)
 
         console.log('typeof: ' + typeof myValue.target.value)
@@ -58,15 +52,14 @@ export default function Body(props) {
             case 'specialChar':
                 setBoxValue({ 'smallString': boxValue.smallString, 'capitalString': boxValue.capitalString, 'numbers': boxValue.numbers, 'specialChar': [boolValue, intValue] })
                 break
+            default:
         }
     }
 
     let parameters = [props.param]
 
     return (
-        <section className={props.cssContainer}>
-            <h2>Body.js</h2>
-            <br />
+        <main className={props.cssContainer}>
             <p>{props.text}</p>
             <table>
                 <tr>
@@ -177,11 +170,11 @@ export default function Body(props) {
                 Decrease to {parameters[0] - 1}
             </button>
             <br />
-            <button onClick={() => {
+            <button className='btn' onClick={() => {
                 console.log('before:')
                 console.table(boxValue)
-                const tmpValue=()=>{return boxValue}
-                var myValue=tmpValue()
+                const tmpValue = () => { return boxValue }
+                var myValue = tmpValue()
                 setValue(props.func(parameters[0], boxValue.smallString, boxValue.capitalString, boxValue.numbers, boxValue.specialChar))
                 setBoxValue(myValue)
                 console.log('copy after:')
@@ -197,6 +190,6 @@ export default function Body(props) {
             </button> */}
             <p>Your pass is: {value}</p>
             <a href='https://google.com.br' target='_blank' rel="noreferrer">Google</a>
-        </section >
+        </main >
     )
 }

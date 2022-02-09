@@ -1,7 +1,3 @@
-const smallString = 0
-const capitalString = 1
-const numberString = 2
-const specialString = 3
 const functionNames = ['smallString', 'capitalString', 'numberString', 'specialString']
 
 export function newPassword(passLength, smalStringEnable, capitalStringEnable, numberEnable, specialCharEnable) {
@@ -47,39 +43,9 @@ const functionArrays = (value) => {
     }
 }
 
-const verifyCondition = (array, funcNumber, maxTurns) => {
-    let output = []
-
-    if (maxTurns === 0) output = [false, 'char turns is 0']
-    if (maxTurns < 0) output = [true, 'char has no limit']
-
-    if (maxTurns > 0) {
-
-        let currentTurn = []
-        if (array.includes(funcNumber)) array.forEach(value => { if (value === funcNumber) currentTurn.push(value) })
-
-        let funcTurnLength = currentTurn.length
-
-        if (funcTurnLength > maxTurns) output = [false, 'char on limit'] // fazer novo sorteio da funcao
-        output = [true, 'char can be repeated'] // pode continuar com a mesma funcao}
-    }
-    return output[0]
-}
-
-const maxTurnsOfFunc = (funcNumber, maxTurns) => {
-    let output = []
-
-    if (maxTurns[funcNumber][0]) output = [maxTurns[funcNumber][1], 'valid number o turns']
-    else output = [0, 'no turns left or not allowed']
-
-    return output[0]
-}
-
 function generate(passLength, smalStringEnable, capitalStringEnable, numberEnable, specialCharEnable) {
     let errorMessage = 'noerror'
     let output = ''
-    let memory = []
-    let duplicateFinder = []
     let originalValues = [smalStringEnable[1], capitalStringEnable[1], numberEnable[1], specialCharEnable[1]]
     let functionsControl = [smalStringEnable, capitalStringEnable, numberEnable, specialCharEnable]
     let maxLoops
@@ -125,44 +91,14 @@ function generate(passLength, smalStringEnable, capitalStringEnable, numberEnabl
             }
         }
 
-        // console.log('\tfirst function to randomize is ' + functionNames[prizeFunction])
-        // let checkSize = maxTurnsOfFunc(prizeFunction, [smalStringEnable, capitalStringEnable, numberEnable, specialCharEnable])
-        // console.log('\tfunction  {' + functionNames[prizeFunction] + '} has size {' + checkSize + '}')
-
-        // maxLoops = 0
-        // while (memory.includes(prizeFunction)) {
-        //     if (verifyCondition(memory, prizeFunction, checkSize)) {
-        //         if (numberOfTurns > 0) functionsControl[prizeFunction][1]--
-        //         break
-        //     }
-
-        //     prizeFunction = luckyNumber(0, 4, prizeFunction)
-        //     isValid = functionsControl[prizeFunction][0]
-
-        //     // if ((select === 0 || select === 1 || select === 2) && memory.includes(3)) break
-        //     console.log('NEW LUCKY NUMBER')
-        //     maxLoops++
-        //     if (maxLoops > 200) {
-        //         errorMessage = 'error on second while '
-        //         console.log('Something wrong happen')
-        //         break
-        //     }
-        // }
-
-        //        memory.push(prizeFunction)
-
         const myFunc = functionArrays(prizeFunction)
 
-        let currentValue = myFunc()
-        // while (duplicateFinder.includes(currentValue)) currentValue = myFunc(duplicateFinder)
+        let currentValue = myFunc()        
 
         console.log('CURRENT CHAR IS: ' + currentValue)
 
         if (functionsControl[prizeFunction][1] > 0)
             functionsControl[prizeFunction][1]--
-
-        //   duplicateFinder.push(currentValue)
-
         output = output.concat(currentValue)
     }
     if (errorMessage !== 'noerror') output = errorMessage
