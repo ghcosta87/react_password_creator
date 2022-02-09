@@ -5,9 +5,23 @@
     align-items:center;
 }
 
-.common a{
-    text-decoration:none;
-    color:#f00;
+.header_container{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    background-color: rgb(120, 120, 120);
+    justify-content:space-around;
+    align-items:center;
+    padding-left:  0.5%;
+    padding-right:  0.5%;
+}
+
+.header_column{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:1%;
 }
 
 .common a:hover{
