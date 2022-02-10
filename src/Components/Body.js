@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button'
 
 export default function Body(props) {
     const [value, setValue] = useState('')
@@ -9,10 +8,13 @@ export default function Body(props) {
         'numbers': [true, -1],
         'specialChar': [true, -1]
     })
-
     const boxValueHandler = (myValue) => {
+        console.table(boxValue)
         let objName = myValue.target.getAttribute('name')
         let numberObjName = myValue.target.getAttribute('name')
+
+        console.log(myValue)
+        console.log(objName)
 
         switch (numberObjName) {
             case 'smallStringLimit': objName = 'smallString'
@@ -34,9 +36,9 @@ export default function Body(props) {
         else if (myValue.target.value === 'sem limite') intValue = -1
         else intValue = parseInt(myValue.target.value)
 
-        console.log('typeof: ' + typeof myValue.target.value)
-        console.log('value: ' + myValue.target.value)
-        console.log('converted: ' + typeof parseInt(myValue.target.value))
+        // console.log('typeof: ' + typeof myValue.target.value)
+        // console.log('value: ' + myValue.target.value)
+        // console.log('converted: ' + typeof parseInt(myValue.target.value))
 
 
         switch (objName) {
@@ -55,141 +57,138 @@ export default function Body(props) {
             default:
         }
     }
-
+    const [buttonsControl, setClick] = useState([false, false, false, false])
     let parameters = [props.param]
 
     return (
-        <main className={props.cssContainer}>
-            <p>{props.text}</p>
-            <table>
-                <tr>
-                    <th>Letras minúsculas</th>
-                    <th></th>
-                    <th>
-                        <select value={boxValue.smallString[0]} name='smallString' onChange={(data) => boxValueHandler(data)}>
-                            <option value={true} >Ativado</option>
-                            <option value={false} >Desativado</option>
-                        </select>
-                    </th>
-                    <th>
-                        <select value={boxValue.smallString[1]} name='smallStringLimit' onChange={(data) => boxValueHandler(data)}>
-                            <option value='sem limite'>sem limite</option>
-                            <option value={0}>0</option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                        </select>
-                    </th>
-                </tr>
+        <section className={props.cssContainer[props.test]}>
+            <div className={props.cssRow[props.test]}>
+                <button
+                    name='smallString'
+                    value={buttonsControl[0]}
+                    className={(buttonsControl[0]) ? props.cssMButton.unChecked[props.test] : props.cssMButton.checked[props.test]}
+                    onClick={(data) => {
+                        setClick([!buttonsControl[0], buttonsControl[1], buttonsControl[2], buttonsControl[3]])
+                        boxValueHandler(data)
+                    }}>
+                    {props.stringList.charOptions.small[props.lang]}
+                </button>
+                <div className={props.cssColumn[props.test]}>
+                    <select className={props.cssSButton[props.test]} value={boxValue.smallString[1]} name='smallStringLimit' onChange={(data) => boxValueHandler(data)}>
+                        <option value='sem limite'>sem limite</option>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                    </select>
+                </div>
+                <div className={props.cssColumn[props.test]}>
+                    <button className={props.cssSButton[props.test]}>up</button>
+                    <button className={props.cssSButton[props.test]}>down</button>
+                </div>
+            </div>
+            <div className={props.cssRow[props.test]}>
+                <button
+                    name='capitalString'
+                    value={buttonsControl[1]}
+                    className={(buttonsControl[1]) ? props.cssMButton.unChecked[props.test] : props.cssMButton.checked[props.test]}
+                    onClick={(data) => {
+                        setClick([buttonsControl[0], !buttonsControl[1], buttonsControl[2], buttonsControl[3]])
+                        boxValueHandler(data)
+                    }}>
+                    {props.stringList.charOptions.capital[props.lang]}
+                </button>
+                <div className={props.cssColumn[props.test]}>
+                    <select className={props.cssSButton[props.test]} value={boxValue.capitalString[1]} name='capitalStringLimit' onChange={(data) => boxValueHandler(data)}>
+                        <option value='sem limite'>sem limite</option>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                    </select>
+                </div>
+                <div className={props.cssColumn[props.test]}>
+                    <button className={props.cssSButton[props.test]}>up</button>
+                    <button className={props.cssSButton[props.test]}>down</button>
+                </div>
+            </div>
+            <div className={props.cssRow[props.test]}>
+                <button
+                    name='numbers'
+                    value={buttonsControl[2]}
+                    className={(buttonsControl[2]) ? props.cssMButton.unChecked[props.test] : props.cssMButton.checked[props.test]}
+                    onClick={(data) => {
+                        setClick([buttonsControl[0], buttonsControl[1], !buttonsControl[2], buttonsControl[3]])
+                        boxValueHandler(data)
+                    }}>
+                    {props.stringList.charOptions.number[props.lang]}
+                </button>
+                <div className={props.cssColumn[props.test]}>
+                    <select className={props.cssSButton[props.test]} value={boxValue.numbers[1]} name='numbersLimit' onChange={(data) => boxValueHandler(data)}>
+                        <option value='sem limite'>sem limite</option>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                    </select>
+                </div>
+                <div className={props.cssColumn[props.test]}>
+                    <button className={props.cssSButton[props.test]}>up</button>
+                    <button className={props.cssSButton[props.test]}>down</button>
+                </div>
+            </div>
+            <div className={props.cssRow[props.test]}>
+                <button
+                    name='specialChar'
+                    value={buttonsControl[3]}
+                    className={(buttonsControl[3]) ? props.cssMButton.unChecked[props.test] : props.cssMButton.checked[props.test]}
+                    onClick={(data) => {
+                        setClick([buttonsControl[0], buttonsControl[1], buttonsControl[2], !buttonsControl[3]])
+                        boxValueHandler(data)
+                    }}>
+                    {props.stringList.charOptions.special[props.lang]}
+                </button>
+                <div className={props.cssColumn[props.test]}>
+                    <select className={props.cssSButton[props.test]} value={boxValue.specialChar[1]} name='specialCharLimit' onChange={(data) => boxValueHandler(data)}>
+                        <option value='sem limite'>sem limite</option>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                    </select>
+                </div>
+                <div className={props.cssColumn[props.test]}>
+                    <button className={props.cssSButton[props.test]}>up</button>
+                    <button className={props.cssSButton[props.test]}>down</button>
+                </div>
+            </div>
+            <br />
+            <h4>Current password length is {parameters[0]}</h4>
 
-                <tr>
-                    <th>Letras maiúsculas</th>
-                    <th></th>
-                    <th>
-                        <select value={boxValue.capitalString[0]} name='capitalString' onChange={(data) => boxValueHandler(data)}>
-                            <option value={true} >Ativado</option>
-                            <option value={false} >Desativado</option>
-                        </select>
-                    </th>
-                    <th>
-                        <select value={boxValue.capitalString[1]} name='capitalStringLimit' onChange={(data) => boxValueHandler(data)}>
-                            <option value='sem limite'>sem limite</option>
-                            <option value={0}>0</option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                        </select>
-                    </th>
-                </tr>
-                <tr>
-                    <th>Números</th>
-                    <th></th>
-                    <th>
-                        <select value={boxValue.numbers[0]} name='numbers' onChange={(data) => boxValueHandler(data)}>
-                            <option value={true} >Ativado</option>
-                            <option value={false} >Desativado</option>
-                        </select>
-                    </th>
-                    <th>
-                        <select value={boxValue.numbers[1]} name='numbersLimit' onChange={(data) => boxValueHandler(data)}>
-                            <option value='sem limite'>sem limite</option>
-                            <option value={0}>0</option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                        </select>
-                    </th>
-                </tr>
-                <tr>
-                    <th>Caracteres especiais</th>
-                    <th></th>
-                    <th>
-                        <select value={boxValue.specialChar[0]} name='specialChar' onChange={(data) => boxValueHandler(data)}>
-                            <option value={true} >Ativado</option>
-                            <option value={false} >Desativado</option>
-                        </select>
-                    </th>
-                    <th>
-                        <select value={boxValue.specialChar[1]} name='specialCharLimit' onChange={(data) => boxValueHandler(data)}>
-                            <option value='sem limite'>sem limite</option>
-                            <option value={0}>0</option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                        </select>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        Current password length is
-                    </td>
-                    <td></td>
-                    <td> {parameters[0]}</td>
-                </tr>
-            </table>
-            <br />
-            <table>
-                <td>
-                    <button onClick={() => { }}>PIN</button>
-                </td>
-                <td></td>
-                <td>
-                    <button onClick={() => { }}>9 digitos c/ especial</button>
-                </td>
-                <td></td>
-                <td>
-                    <button onClick={() => { }}>9 digitos s/ especial</button>
-                </td>
-            </table>
-            <br />
-            <button onClick={() => { setValue(props.varFunc(parameters[0] + 1)) }}>
-                Increase to {parameters[0] + 1}
-            </button>
-            <br />
-            <button onClick={() => { setValue(props.varFunc(parameters[0] - 1)) }}>
-                Decrease to {parameters[0] - 1}
-            </button>
-            <br />
-            <button className='btn' onClick={() => {
-                console.log('before:')
-                console.table(boxValue)
-                const tmpValue = () => { return boxValue }
-                var myValue = tmpValue()
-                setValue(props.func(parameters[0], boxValue.smallString, boxValue.capitalString, boxValue.numbers, boxValue.specialChar))
-                setBoxValue(myValue)
-                console.log('copy after:')
-                console.table(myValue)
-                console.log('original after:')
-                console.table(boxValue)
-            }}>
-                Generate
-            </button>
-            <br />
-            {/* <button onClick={() => optionHandler()}>
-                teste options
-            </button> */}
-            <p>Your pass is: {value}</p>
+            <div  className={props.cssContainer[props.test]} flex-wrap='wrap'>
+                <button onClick={() => { }}>PIN</button>
+                <button onClick={() => { }}>9 digitos c/ especial</button>
+                <button onClick={() => { }}>9 digitos s/ especial</button>
+                <button onClick={() => { setValue(props.varFunc(parameters[0] + 1)) }}>
+                    Increase to {parameters[0] + 1}
+                </button>
+                <button onClick={() => { setValue(props.varFunc(parameters[0] - 1)) }}>
+                    Decrease to {parameters[0] - 1}
+                </button>
+                <br/>
+                <button className={props.cssMButton.checked[props.test]} onClick={() => {
+                    console.log('before:')
+                    console.table(boxValue)
+                    const tmpValue = () => { return boxValue }
+                    var myValue = tmpValue()
+                    setValue(props.func(parameters[0], boxValue.smallString, boxValue.capitalString, boxValue.numbers, boxValue.specialChar))
+                    setBoxValue(myValue)
+                    console.log('copy after:')
+                    console.table(myValue)
+                    console.log('original after:')
+                    console.table(boxValue)
+                }}>
+                    Generate
+                </button>
+                <p>Your pass is: {value}</p>
+            </div>
             <a href='https://google.com.br' target='_blank' rel="noreferrer">Google</a>
-        </main >
+        </section >
     )
 }

@@ -1,10 +1,23 @@
 const appSgtring = {
-    errors: {
-        fileNotFound: 'something whent wrong'
-    },
     names: {
-        _appTitle: ['Our Password Creator', 'Nuestro Creador de Contraseñas', 'Criador de Senhas'],
-    }
+        _appTitle: ['Gerador de Senhas', 'Password Generator', 'Creador de Contraseñas'],
+    },
+    languages: ['Portugues (Brasil)', 'English', 'Español'],
+    colorScheme: {
+        normal: ['Padrão', 'Default', ''],
+        dark: ['Escuro', 'Dark mode', '']
+    },
+    options: {
+        enable: []
+    },
+    charOptions: {
+        small: ['Minúsculas', 'Lowercase', ''],
+        capital: ['Maiúsculas', 'Capitalcase', ''],
+        number: ['Números', 'Numbers', ''],
+        special: ['Especial', 'Special', ''],
+        length: ['Comprimento', 'Length', ''],
+    },
+    buttons: {}
 }
 
 export default appSgtring
