@@ -1,5 +1,70 @@
-.text{
-    text-align: center;
-    vertical-align: center;
-    font-family: "Lucida Console", "Courier New", monospace;
+.p1 {
+  font-family: "Roboto", sans-serif;
+  /* font-size: x-large; */
+  vertical-align: center;
+  width: 100%;
+  word-wrap: normal;
+}
+
+.p2{
+  font-family: "Roboto", sans-serif;
+  /* font-size: x-large; */
+  word-wrap: normal;
+  vertical-align: center;
+  border-bottom: 1px solid;
+}
+
+.accordion_text_button{
+  font-family: "Roboto", sans-serif;
+  /* font-size-adjust: inherit; */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  vertical-align: center;
+}
+
+.copy_input{
+  width: auto;
+}
+
+.length_set[type=number]{
+  font-family: "Roboto", sans-serif;
+  font-size: x-large;
+  vertical-align: center;
+  border-bottom: 1px solid;
+}
+
+.text {
+  text-align: center;
+  vertical-align: center;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.wrapper {
+  height: 100vh;
+  /*This part is important for centering*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typing-demo {
+  width: 22ch;
+  animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
