@@ -12,26 +12,36 @@ const luckyNumber = (min, max, forbiden) => {
 
 const randomSmallString = (alreadyUsed) => {
     const options = 'abcdefghijklmnopqrstuvwxyz'
-    const array = options.split('')
-    return options[luckyNumber(0, options.length, options.length + 1)]
+    let newOptions = charCheck(alreadyUsed, options)
+    return newOptions[luckyNumber(0, newOptions.length, newOptions.length + 1)]
 }
 
 const randomCapitalString = (alreadyUsed) => {
     const options = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    const array = options.split('')
-    return options[luckyNumber(0, options.length, options.length + 1)]
+    let newOptions = charCheck(alreadyUsed, options)
+    return newOptions[luckyNumber(0, newOptions.length, newOptions.length + 1)]
 }
 
 const randomNumber = (alreadyUsed) => {
     const options = '0123456789'
-    const array = options.split('')
-    return options[luckyNumber(0, options.length, options.length + 1)]
+    let newOptions = charCheck(alreadyUsed, options)
+    return newOptions[luckyNumber(0, newOptions.length, newOptions.length + 1)]
 }
 
 const randomSpecialChar = (alreadyUsed) => {
     const options = '@#$%&_'
-    const array = options.split('')
-    return options[luckyNumber(0, options.length, options.length + 1)]
+    let newOptions = charCheck(alreadyUsed, options)
+    return newOptions[luckyNumber(0, newOptions.length, newOptions.length + 1)]
+}
+
+const charCheck = (alreadyUsed, options) => {
+    let newOptions = []
+    let charOptions = options.split('')
+
+    charOptions.forEach(element => {
+        if (!alreadyUsed.includes(element)) newOptions.push(element)
+    });
+    return newOptions
 }
 
 const functionArrays = (value) => {
@@ -50,23 +60,23 @@ function generate(passLength, smalStringEnable, capitalStringEnable, numberEnabl
     let functionsControl = [smalStringEnable, capitalStringEnable, numberEnable, specialCharEnable]
     let maxLoops
 
-    console.log('values received: ' + smalStringEnable + ' - ' + capitalStringEnable + ' - ' + numberEnable + ' - ' + specialCharEnable)
-    console.table(functionsControl)
+    //   console.log('values received: ' + smalStringEnable + ' - ' + capitalStringEnable + ' - ' + numberEnable + ' - ' + specialCharEnable)
+    //   console.table(functionsControl)
 
     for (let i = 0; i < passLength; i++) {
-        console.log('password length now is ' + i)
+        //   console.log('password length now is ' + i)
 
         // sortear uma função
         let prizeFunction = luckyNumber(0, 4, 4 + 1)
-        console.log('prizeFunction: ' + prizeFunction + ' (' + functionNames[prizeFunction] + ')')
+        //   console.log('prizeFunction: ' + prizeFunction + ' (' + functionNames[prizeFunction] + ')')
 
         /// verificar se a função é valida
         let isValid = functionsControl[prizeFunction][0]
         let numberOfTurns = functionsControl[prizeFunction][1]
         let message = functionsControl[prizeFunction][0] + ' ~ ' + functionsControl[prizeFunction][1]
 
-        console.log((isValid) ? 'validado >> ' + message : 'função selectionada não é valida >> ' + message)
-        console.log('number of turns for this function is ' + numberOfTurns)
+        //   console.log((isValid) ? 'validado >> ' + message : 'função selectionada não é valida >> ' + message)
+        //   console.log('number of turns for this function is ' + numberOfTurns)
 
         if (numberOfTurns === 0) isValid = false
 
@@ -80,22 +90,22 @@ function generate(passLength, smalStringEnable, capitalStringEnable, numberEnabl
             if (isValid && numberOfTurns !== 0) isValid = true
             else isValid = false
 
-            console.log('try function ' + functionNames[prizeFunction] + ' \nid: ' + prizeFunction + '\ncurrent ' +
-                ((isValid) ? 'valid' : 'not valid') + '\nwith ' + ((numberOfTurns === -1) ? 'unlimited' : numberOfTurns) + ' turns left')
+            //   console.log('try function ' + functionNames[prizeFunction] + ' \nid: ' + prizeFunction + '\ncurrent ' +
+            //   ((isValid) ? 'valid' : 'not valid') + '\nwith ' + ((numberOfTurns === -1) ? 'unlimited' : numberOfTurns) + ' turns left')
 
             maxLoops++
             if (maxLoops > 200) {
                 errorMessage = 'error while validating'
-                console.log('Something wrong happen')
+                //   console.log('Something wrong happen')
                 break
             }
         }
 
         const myFunc = functionArrays(prizeFunction)
 
-        let currentValue = myFunc()        
+        let currentValue = myFunc(output.split(''))
 
-        console.log('CURRENT CHAR IS: ' + currentValue)
+        //   console.log('CURRENT CHAR IS: ' + currentValue)
 
         if (functionsControl[prizeFunction][1] > 0)
             functionsControl[prizeFunction][1]--

@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 //  rendenring with interval
-/*
+
 function intervalRender() {
   ReactDOM.render(
     <React.StrictMode>
@@ -15,15 +15,15 @@ function intervalRender() {
   );
 }
 setInterval(intervalRender, 1000);
-*/
 
+/*
 // rendering without setTimeout
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
-);
+);*/
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

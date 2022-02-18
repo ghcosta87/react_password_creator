@@ -1,7 +1,7 @@
 const appImages = {
     icon: {
         _logo: '/Images/logo.png',
-        _logo2: 'logo192.png'
+        _copy: '/Images/copy.svg'
     }
 }
 export default appImages

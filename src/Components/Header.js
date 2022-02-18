@@ -4,14 +4,14 @@ import { Dropdown } from 'react-bootstrap/'
 export default function Header(props) {
     return (
         <section>
-            <div className={props.cssContainer[props.scheme]}>
-                <div className={props.cssChildren}>
+            <div className={props.css.root[props.scheme]}>
+                <div className={props.css.header_child_column_a}>
                     <h1 className={props.cssText}>{props.title}</h1>
                 </div>
-                <div className={props.cssChildren}>
+                <div className={props.css.header_child_column_b}>
                     <Dropdown>
-                        <Dropdown.Toggle variant="success" id="lang-select" onChange={() => { }}>
-                            { props.stringList.languages[props.lang]}
+                        <Dropdown.Toggle id="lang-select" onChange={() => { }}>
+                            {props.stringList.languages[props.lang]}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={
@@ -29,9 +29,9 @@ export default function Header(props) {
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
-                <div className={props.cssChildren}>
+                <div className={props.css.header_child_column_b}>
                     <Dropdown>
-                        <Dropdown.Toggle variant="success" id="theme-select" onChange={() => { }}>
+                        <Dropdown.Toggle id="theme-select" onChange={() => { }}>
                             {(props.scheme) ? props.stringList.colorScheme.dark[props.lang] : props.stringList.colorScheme.normal[props.lang]}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
